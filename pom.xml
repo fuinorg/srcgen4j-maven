@@ -1,103 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-	<parent>
-		<groupId>org.fuin</groupId>
-		<artifactId>pom</artifactId>
-		<version>1.1.0</version>
-	</parent>
+    <modelVersion>4.0.0</modelVersion>
 
-	<groupId>org.fuin.srcgen4j</groupId>
-	<artifactId>srcgen4j-maven</artifactId>
-	<version>0.3.0-SNAPSHOT</version>
-	<packaging>maven-plugin</packaging>
+    <parent>
+        <groupId>org.fuin</groupId>
+        <artifactId>pom</artifactId>
+        <version>1.1.0</version>
+    </parent>
 
-	<name>SrcGen4J Maven Plugin</name>
-	<description>Source code generation for Java (Maven Plugin)</description>
-	<url>http://www.fuin.org/srcgen4j/maven/</url>
+    <groupId>org.fuin.srcgen4j</groupId>
+    <artifactId>srcgen4j-maven-parent</artifactId>
+    <version>0.3.0</version>
+    <packaging>pom</packaging>
+    <name>SrcMixins4J Maven Parent</name>
+    <description>Source code based mixins for Java / Maven</description>
 
-	<scm>
-		<url>https://github.com/fuinorg/srcgen4j-maven/</url>
-		<connection>scm:git:git://github.com/fuinorg/srcgen4j-maven.git</connection>
-		<developerConnection>scm:git:git@github.com:fuinorg/srcgen4j-maven.git</developerConnection>
-	</scm>
+    <scm>
+        <url>https://github.com/fuinorg/srcgen4j-maven/</url>
+        <connection>scm:git:git://github.com/fuinorg/srcgen4j-maven.git</connection>
+        <developerConnection>scm:git:git@github.com:fuinorg/srcgen4j-maven.git</developerConnection>
+    </scm>
 
-	<issueManagement>
-		<system>GitHub Issues</system>
-		<url>https://github.com/fuinorg/srcgen4j-maven/issues</url>
-	</issueManagement>
+    <issueManagement>
+        <system>GitHub Issues</system>
+        <url>https://github.com/fuinorg/srcgen4j-maven/issues</url>
+    </issueManagement>
 
-	<dependencies>
-
-		<!-- compile -->
-
-		<dependency>
-			<groupId>org.apache.maven</groupId>
-			<artifactId>maven-plugin-api</artifactId>
-			<version>3.1.1</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.maven</groupId>
-			<artifactId>maven-project</artifactId>
-			<version>3.0-alpha-2</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.fuin.srcgen4j</groupId>
-			<artifactId>srcgen4j-core</artifactId>
-			<version>0.3.0-SNAPSHOT</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>1.6.1</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-validator</artifactId>
-			<version>4.0.2.GA</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>jaxb-impl</artifactId>
-					<groupId>com.sun.xml.bind</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>jaxb-api</artifactId>
-					<groupId>javax.xml.bind</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-
-		<!-- test -->
-
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.11</version>
-			<scope>test</scope>
-		</dependency>
-
-	</dependencies>
-
-	<build>
-
-		<plugins>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-plugin-plugin</artifactId>
-				<version>2.9</version>
-				<configuration>
-					<goalPrefix>srcgen4j</goalPrefix>
-				</configuration>
-			</plugin>
-
-		</plugins>
-
-	</build>
+    <modules>
+        <module>srcgen4j-maven-plugin</module>
+        <module>srcgen4j-maven-test</module>
+    </modules>
 
 </project>

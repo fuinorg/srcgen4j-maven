@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<srcgen4j-config xmlns="http://www.fuin.org/srcgen4j/commons" xmlns:velo="http://www.fuin.org/srcgen4j/core/velocity">
+	
+	<variables>
+		<variable name="templatesPath" value="${rootDir}/templates" />
+	</variables>
+	
+	<projects>
+		<project name="example" path="${rootDir}" maven="false">
+			<folder name="srcGenFolder" path="srcGen" create="true" override="true" clean="true" />
+		</project>
+	</projects>
+	
+	<parsers>
+		<parser name="parse1" class="org.fuin.srcgen4j.core.velocity.ParameterizedTemplateParser">
+			<config>
+				<velo:parameterized-template-parser modelPath="${templatesPath}" 
+				                                    modelFilter=".*\.ptg\.xml"
+				                                    templatePath="${templatesPath}" 
+				                                    templateFilter=".*\.ptg\.java" />
+			</config>
+		</parser>
+	</parsers>
+	
+	<generators>
+		<generator name="gen1" class="org.fuin.srcgen4j.core.velocity.ParameterizedTemplateGenerator" 
+		           parser="parse1" project="example">
+		    <config>
+				<velo:parameterized-template-generator templatePath="${templatesPath}" />
+			</config>
+			<artifact name="file" folder="srcGenFolder" />
+		</generator>
+	</generators>
+	
+</srcgen4j-config>
