@@ -60,7 +60,7 @@ public final class MavenLoggerAdapter extends MarkerIgnoringBase {
      * @return The Maven log
      */
     private Log log() {
-        return MavenLoggerFactoryBinder.getSingleton().getMavenLog();
+        return StaticLoggerBinder.getSingleton().getMavenLog();
     }
 
     /**

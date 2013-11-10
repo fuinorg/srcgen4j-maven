@@ -19,7 +19,9 @@ package org.fuin.srcgen4j.maven;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -37,7 +39,7 @@ import org.fuin.srcgen4j.commons.SrcGen4JConfig;
 import org.fuin.srcgen4j.commons.SrcGen4JContext;
 import org.fuin.srcgen4j.commons.UnmarshalObjectException;
 import org.fuin.utils4j.Utils4J;
-import org.slf4j.impl.MavenLoggerFactoryBinder;
+import org.slf4j.impl.StaticLoggerBinder;
 
 /**
  * A customizable source code generator plugin for maven.
@@ -66,6 +68,14 @@ public final class SrcGen4JMojo extends AbstractMojo {
      * @readonly
      */
     private File configFile;
+
+    /**
+     * A list of JAXB classes to be bound to the JAXB context.
+     * 
+     * @parameter
+     * @readonly
+     */
+    private String[] jaxbClassesToBeBound;
 
     /**
      * Checks if a variable is not <code>null</code> and throws an
@@ -100,6 +110,24 @@ public final class SrcGen4JMojo extends AbstractMojo {
         }
     }
 
+    private Class<?>[] getJaxbContextClasses(final ClassLoader classLoader)
+            throws MojoExecutionException {
+        final Set<Class<?>> classes = new HashSet<Class<?>>();
+        classes.add(SrcGen4JConfig.class);
+        if ((jaxbClassesToBeBound != null) && (jaxbClassesToBeBound.length > 0)) {
+            for (final String name : jaxbClassesToBeBound) {
+                try {
+                    final Class<?> clasz = classLoader.loadClass(name);
+                    classes.add(clasz);
+                } catch (final ClassNotFoundException ex) {
+                    throw new MojoExecutionException("Class to add to JAXB context not found: "
+                            + name, ex);
+                }
+            }
+        }
+        return classes.toArray(new Class<?>[classes.size()]);
+    }
+
     /**
      * Creates and initializes a SrcGen4J configuration from a configuration
      * file and adds the necessary configurations.
@@ -114,12 +142,13 @@ public final class SrcGen4JMojo extends AbstractMojo {
      * @throws MojoExecutionException
      *             Error reading the configuration.
      */
-    public static SrcGen4JConfig createAndInit(final SrcGen4JContext context, final File configFile)
+    public SrcGen4JConfig createAndInit(final SrcGen4JContext context, final File configFile)
             throws MojoExecutionException {
         try {
             final JaxbHelper helper = new JaxbHelper();
+            final Class<?>[] classes = getJaxbContextClasses(context.getClassLoader());
             final SrcGen4JConfig config = helper.create(configFile,
-                    JAXBContext.newInstance(SrcGen4JConfig.class));
+                    JAXBContext.newInstance(classes));
             config.init(context, Utils4J.getCanonicalFile(configFile.getParentFile()));
             return config;
         } catch (final JAXBException ex) {
@@ -142,7 +171,7 @@ public final class SrcGen4JMojo extends AbstractMojo {
     @Override
     public void execute() throws MojoExecutionException {
 
-        MavenLoggerFactoryBinder.getSingleton().setMavenLog(getLog());
+        StaticLoggerBinder.getSingleton().setMavenLog(getLog());
 
         checkConfigFile();
 

@@ -45,7 +45,7 @@ import org.slf4j.spi.LoggerFactoryBinder;
  * @version $Id$
  * @see <a href="http://www.slf4j.org/faq.html#slf4j_compatible">SLF4J FAQ</a>
  */
-public final class MavenLoggerFactoryBinder implements LoggerFactoryBinder {
+public final class StaticLoggerBinder implements LoggerFactoryBinder {
 
     /**
      * Declare the version of the SLF4J API this implementation is compiled
@@ -56,7 +56,7 @@ public final class MavenLoggerFactoryBinder implements LoggerFactoryBinder {
     /**
      * The unique instance of this class.
      */
-    private static final MavenLoggerFactoryBinder SINGLETON = new MavenLoggerFactoryBinder();
+    private static final StaticLoggerBinder SINGLETON = new StaticLoggerBinder();
 
     /**
      * The {@link ILoggerFactory} instance returned by the
@@ -72,7 +72,7 @@ public final class MavenLoggerFactoryBinder implements LoggerFactoryBinder {
     /**
      * Private ctor to avoid direct instantiation of the class.
      */
-    private MavenLoggerFactoryBinder() {
+    private StaticLoggerBinder() {
         this.factory = new MavenLoggerFactory();
     }
 
@@ -81,8 +81,8 @@ public final class MavenLoggerFactoryBinder implements LoggerFactoryBinder {
      * 
      * @return The StaticLoggerBinder singleton
      */
-    public static MavenLoggerFactoryBinder getSingleton() {
-        return MavenLoggerFactoryBinder.SINGLETON;
+    public static StaticLoggerBinder getSingleton() {
+        return StaticLoggerBinder.SINGLETON;
     }
 
     /**
