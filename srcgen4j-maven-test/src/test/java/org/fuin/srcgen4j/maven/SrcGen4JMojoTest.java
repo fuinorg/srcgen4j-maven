@@ -47,16 +47,22 @@ public class SrcGen4JMojoTest {
     public void testMojo() throws VerificationException {
 
         // PREPARE
-        final File actualFile = new File(TEST_DIR,
-                "src/main/java/org/fuin/srcmixins4j/test/TestClass.java");
-        final File expectedFile = new File("src/test/resources/ExpectedTestClass.java");
+        final File fileA = new File(TEST_DIR, "srcGen/a/A.java");
+        final File fileB = new File(TEST_DIR, "srcGen/b/B.java");
+        fileA.delete();
+        fileA.getParentFile().delete();
+        fileB.delete();
+        fileB.getParentFile().delete();
+        assertThat(fileA).doesNotExist();
+        assertThat(fileB).doesNotExist();
 
         // TEST
         verifier.executeGoal("org.fuin.srcgen4j:srcgen4j-maven-plugin:process-template");
 
         // VERIFY
         verifier.verifyErrorFreeLog();
-        assertThat(actualFile).hasSameContentAs(expectedFile);
+        assertThat(fileA).exists();
+        assertThat(fileB).exists();
 
     }
 

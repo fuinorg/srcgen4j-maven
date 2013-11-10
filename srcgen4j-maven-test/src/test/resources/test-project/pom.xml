@@ -15,6 +15,13 @@
                 <groupId>org.fuin.srcgen4j</groupId>
                 <artifactId>srcgen4j-maven-plugin</artifactId>
                 <version>0.3.0-SNAPSHOT</version>
+                <configuration>
+					<jaxbClassesToBeBound>
+					  <param>org.fuin.srcgen4j.core.velocity.VelocityGeneratorConfig</param>
+					  <param>org.fuin.srcgen4j.core.velocity.ParameterizedTemplateParserConfig</param>
+					  <param>org.fuin.srcgen4j.core.velocity.ParameterizedTemplateGeneratorConfig</param>
+					</jaxbClassesToBeBound>
+                </configuration>
                 <executions>
                     <execution>
                         <id>srcgen4j</id>
