@@ -11,7 +11,7 @@ __CAUTION: *Project is in early stage (Work in progress)*__
 
 What is this?
 -------------
-The project provides a Maven plugin that executes a parse/generate workflow based on the ([srcgen4j-common](https://github.com/fuinorg/srcgen4j-common/))/([srcgen4j-core](https://github.com/fuinorg/srcgen4j-core/)) projects. 
+The project provides a Maven plugin that executes a parse/generate workflow based on the [srcgen4j-common](https://github.com/fuinorg/srcgen4j-common/)/[srcgen4j-core](https://github.com/fuinorg/srcgen4j-core/) projects. 
 
 Usage
 -----
