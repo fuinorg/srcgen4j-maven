@@ -1,2 +1,7 @@
-/.settings
-/target
+.*
+!.gitignore
+!.gitkeep
+!.checkstyle
+target
+META-INF
+*.log
