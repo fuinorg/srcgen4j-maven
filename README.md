@@ -22,7 +22,7 @@ Simply add the plugin to your project's Maven POM and add configuration an depen
 <plugin>
     <groupId>org.fuin.srcgen4j</groupId>
     <artifactId>srcgen4j-maven-plugin</artifactId>
-    <version>0.4.0</version>
+    <version>0.4.1</version>
     <configuration>
         <!-- Default XML config file name can be changed by adding the following:
         <configFile>srcgen4j-config.xml<configFile>
