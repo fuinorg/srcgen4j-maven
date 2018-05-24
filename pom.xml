@@ -7,14 +7,13 @@
     <parent>
         <groupId>org.fuin</groupId>
         <artifactId>pom</artifactId>
-        <version>1.4.0</version>
+        <version>1.5.0</version>
     </parent>
 
     <groupId>org.fuin.srcgen4j</groupId>
     <artifactId>srcgen4j-maven-parent</artifactId>
     <version>0.4.1-SNAPSHOT</version>
     <packaging>pom</packaging>
-	<name>SrcGen4J Maven Plugin / Parent</name>
 	<description>Source code generation for Java (Maven Plugin)</description>
 
     <scm>
