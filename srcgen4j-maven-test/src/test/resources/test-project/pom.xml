@@ -14,7 +14,7 @@
             <plugin>
                 <groupId>org.fuin.srcgen4j</groupId>
                 <artifactId>srcgen4j-maven-plugin</artifactId>
-                <version>0.4.0</version>
+                <version>0.4.1</version>
                 <configuration>
 					<jaxbClassesToBeBound>
 					  <param>org.fuin.srcgen4j.core.velocity.VelocityGeneratorConfig</param>
