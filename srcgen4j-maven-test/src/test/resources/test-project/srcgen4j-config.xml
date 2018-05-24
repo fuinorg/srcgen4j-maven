@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<srcgen4j-config xmlns="http://www.fuin.org/srcgen4j/commons" xmlns:velo="http://www.fuin.org/srcgen4j/core/velocity">
+<srcgen4j-config 
+    xmlns="http://www.fuin.org/srcgen4j/commons" 
+    xmlns:cfg="http://www.fuin.org/xmlcfg4j"
+    xmlns:velo="http://www.fuin.org/srcgen4j/core/velocity">
 	
-	<variables>
-		<variable name="templatesPath" value="${rootDir}/templates" />
-	</variables>
+	<cfg:variables>
+		<cfg:variable name="templatesPath" value="${rootDir}/templates" />
+	</cfg:variables>
 	
 	<projects>
 		<project name="example" path="${rootDir}" maven="false">
