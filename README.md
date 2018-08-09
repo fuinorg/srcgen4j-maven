@@ -3,13 +3,11 @@ srcgen4j-maven
 
 Source code generation for Java (Maven Plugin)
 
-[![Build Status](https://fuin-org.ci.cloudbees.com/job/srcgen4j-maven/badge/icon)](https://fuin-org.ci.cloudbees.com/job/srcgen4j-maven/)
+[![Build Status](jenkins.fuin.org/job/srcgen4j-maven/badge/icon)](https://jenkins.fuin.org/job/srcgen4j-maven/)
 [![Coverage Status](https://sonarcloud.io/api/project_badges/measure?project=org.fuin.srcgen4j%3Asrcgen4j-maven-parent&metric=coverage)](https://sonarcloud.io/dashboard?id=org.fuin.srcgen4j%3Asrcgen4j-maven-parent)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.fuin.srcgen4j/srcgen4j-maven-parent/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.fuin.srcgen4j/srcgen4j-maven-parent/)
 [![LGPLv3 License](http://img.shields.io/badge/license-LGPLv3-blue.svg)](https://www.gnu.org/licenses/lgpl.html)
 [![Java Development Kit 1.8](https://img.shields.io/badge/JDK-1.8-green.svg)](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
-
-<a href="https://fuin-org.ci.cloudbees.com/job/srcgen4j-maven"><img src="http://www.fuin.org/images/Button-Built-on-CB-1.png" width="213" height="72" border="0" alt="Built on CloudBees"/></a>
 
 What is this?
 -------------
