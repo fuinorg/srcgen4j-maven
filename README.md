@@ -1,6 +1,4 @@
-srcgen4j-maven
-==============
-
+# srcgen4j-maven
 Source code generation for Java (Maven Plugin)
 
 [![Build Status](https://jenkins.fuin.org/job/srcgen4j-maven/badge/icon)](https://jenkins.fuin.org/job/srcgen4j-maven/)
@@ -9,12 +7,10 @@ Source code generation for Java (Maven Plugin)
 [![LGPLv3 License](http://img.shields.io/badge/license-LGPLv3-blue.svg)](https://www.gnu.org/licenses/lgpl.html)
 [![Java Development Kit 1.8](https://img.shields.io/badge/JDK-1.8-green.svg)](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 
-What is this?
--------------
+## What is this?
 The project provides a Maven plugin that executes a parse/generate workflow based on the [srcgen4j-common](https://github.com/fuinorg/srcgen4j-common/)/[srcgen4j-core](https://github.com/fuinorg/srcgen4j-core/) projects. 
 
-Usage
------
+## Usage
 Simply add the plugin to your project's Maven POM and add configuration an dependencies.
 ```xml
 <plugin>
@@ -42,16 +38,16 @@ Simply add the plugin to your project's Maven POM and add configuration an depen
         </dependency>
     </dependencies>
 </plugin>
-
 ```
 
+## Example
 You can also find an example project here: [test-project](https://github.com/fuinorg/srcgen4j-maven/tree/master/srcgen4j-maven-test/src/test/resources/test-project).
 
+## Debugging
+To start the generation process in debug mode you can checkout the [srcgen4j-maven-app](srcgen4j-maven-app) project.
 
-- - - - - - - - -
+## Snapshots
 
-Snapshots
-=========
 Snapshots can be found on the [OSS Sonatype Snapshots Repository](http://oss.sonatype.org/content/repositories/snapshots/org/fuin "Snapshot Repository"). 
 
 Add the following to your .m2/settings.xml to enable snapshots in your Maven build:
