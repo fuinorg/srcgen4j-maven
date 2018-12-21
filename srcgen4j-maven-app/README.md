@@ -1,8 +1,8 @@
 srcgen4j-maven-app
 ==================
-Application that takes a Maven pom.xml and 
+Application that takes a Maven pom.xml and executes the generator in a main method.
 
-You can use this application to easily debug the generation process for any srcgen4j project.
+You can use this application to easily debug the generation process for any SrcGen4J project.
 
 ## Getting started
 1. Add all dependencies necessary for the generation process to the [pom.xml](pom.xml)
