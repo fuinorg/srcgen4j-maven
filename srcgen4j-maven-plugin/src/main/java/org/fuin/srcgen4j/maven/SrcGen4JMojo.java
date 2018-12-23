@@ -39,6 +39,7 @@ import org.fuin.srcgen4j.commons.SrcGen4JConfig;
 import org.fuin.srcgen4j.commons.SrcGen4JContext;
 import org.fuin.srcgen4j.commons.UnmarshalObjectException;
 import org.fuin.utils4j.Utils4J;
+import org.fuin.utils4j.classpath.Handler;
 import org.slf4j.impl.StaticLoggerBinder;
 
 /**
@@ -173,6 +174,8 @@ public final class SrcGen4JMojo extends AbstractMojo {
 
         StaticLoggerBinder.getSingleton().setMavenLog(getLog());
 
+        Handler.add();
+        
         checkConfigFile();
 
         final DefaultContext context = new DefaultContext(this.getClass().getClassLoader(),
