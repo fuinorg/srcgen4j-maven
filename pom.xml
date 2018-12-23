@@ -30,6 +30,7 @@
 	<modules>
 		<module>srcgen4j-maven-plugin</module>
 		<module>srcgen4j-maven-test</module>
+        <module>srcgen4j-maven-app</module>
 	</modules>
 
 	<build>
