@@ -12,6 +12,7 @@ The project provides a Maven plugin that executes a parse/generate workflow base
 
 ## Usage
 Simply add the plugin to your project's Maven POM and add configuration an dependencies.
+
 ```xml
 <plugin>
     <groupId>org.fuin.srcgen4j</groupId>
