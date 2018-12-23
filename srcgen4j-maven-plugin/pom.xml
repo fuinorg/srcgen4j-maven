@@ -32,6 +32,12 @@
 			<artifactId>srcgen4j-core</artifactId>
 			<version>0.4.3-SNAPSHOT</version>
 		</dependency>
+        
+        <dependency>
+            <groupId>org.fuin</groupId>
+            <artifactId>utils4j</artifactId>
+            <version>0.10.1-SNAPSHOT</version>
+        </dependency>
 
 		<dependency>
 			<groupId>org.slf4j</groupId>
