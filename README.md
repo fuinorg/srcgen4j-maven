@@ -65,7 +65,7 @@ Add the following to your .m2/settings.xml (section "repositories") to enable sn
     </snapshots>
 </repository>
 ```
-An additional entry to the "pluginRepositories" is also required:
+An additional entry to the "pluginRepositories" section is also required:
 ```xml
 <pluginRepository>
     <id>sonatype.oss.snapshots</id>
