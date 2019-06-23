@@ -51,8 +51,7 @@ To start the generation process in debug mode you can checkout the [srcgen4j-mav
 
 Snapshots can be found on the [OSS Sonatype Snapshots Repository](http://oss.sonatype.org/content/repositories/snapshots/org/fuin "Snapshot Repository"). 
 
-Add the following to your .m2/settings.xml to enable snapshots in your Maven build:
-
+Add the following to your .m2/settings.xml (section "repositories") to enable snapshots in your Maven build:
 ```xml
 <repository>
     <id>sonatype.oss.snapshots</id>
@@ -65,4 +64,18 @@ Add the following to your .m2/settings.xml to enable snapshots in your Maven bui
         <enabled>true</enabled>
     </snapshots>
 </repository>
+```
+An additional entry to the "pluginRepositories" is also required:
+```xml
+<pluginRepository>
+    <id>sonatype.oss.snapshots</id>
+    <name>Sonatype OSS Snapshot Repository</name>
+    <url>http://oss.sonatype.org/content/repositories/snapshots</url>
+    <releases>
+        <enabled>false</enabled>
+    </releases>
+    <snapshots>
+        <enabled>true</enabled>
+    </snapshots>
+</pluginRepository>
 ```
