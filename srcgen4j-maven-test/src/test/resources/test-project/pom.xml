@@ -33,10 +33,15 @@
                 </executions>
                 <dependencies>
 			        <dependency>
-			            <groupId>org.apache.velocity</groupId>
-			            <artifactId>velocity</artifactId>
-			            <version>1.7</version>
+						<groupId>org.apache.velocity</groupId>
+						<artifactId>velocity-engine-core</artifactId>
+						<version>2.3</version>
 			        </dependency>
+					<dependency>
+						<groupId>com.sun.xml.bind</groupId>
+						<artifactId>jaxb-impl</artifactId>
+						<version>2.3.5</version>
+					</dependency>
                 </dependencies>
             </plugin>
 

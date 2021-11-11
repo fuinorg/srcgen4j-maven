@@ -5,7 +5,12 @@ Source code generation for Java (Maven Plugin)
 [![Coverage Status](https://sonarcloud.io/api/project_badges/measure?project=org.fuin.srcgen4j%3Asrcgen4j-maven-parent&metric=coverage)](https://sonarcloud.io/dashboard?id=org.fuin.srcgen4j%3Asrcgen4j-maven-parent)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.fuin.srcgen4j/srcgen4j-maven-parent/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.fuin.srcgen4j/srcgen4j-maven-parent/)
 [![LGPLv3 License](http://img.shields.io/badge/license-LGPLv3-blue.svg)](https://www.gnu.org/licenses/lgpl.html)
-[![Java Development Kit 1.8](https://img.shields.io/badge/JDK-1.8-green.svg)](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+[![Java Development Kit 11](https://img.shields.io/badge/JDK-11-green.svg)](https://openjdk.java.net/projects/jdk/11/)
+
+## Versions
+- 0.4.3 (or later) = **Java 11** before namespace change from 'javax' to 'jakarta'
+- 0.4.2 (or previous) = **Java 8**
+
 
 ## What is this?
 The project provides a Maven plugin that executes a parse/generate workflow based on the [srcgen4j-common](https://github.com/fuinorg/srcgen4j-common/)/[srcgen4j-core](https://github.com/fuinorg/srcgen4j-core/) projects. 

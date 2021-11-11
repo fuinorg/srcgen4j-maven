@@ -27,24 +27,24 @@
             <version>0.4.3-SNAPSHOT</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.25</version>
-        </dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.32</version>
+		</dependency>
 
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.2.0</version>
+            <version>1.2.6</version>
         </dependency>
 
         <!-- Add all dependencies needed for executing the plugin -->
 
         <dependency>
-            <groupId>org.apache.velocity</groupId>
-            <artifactId>velocity</artifactId>
-            <version>1.7</version>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity-engine-core</artifactId>
+			<version>2.3</version>
         </dependency>
 
     </dependencies>
@@ -52,6 +52,11 @@
     <build>
 
         <plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
