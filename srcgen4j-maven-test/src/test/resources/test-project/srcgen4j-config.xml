@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<srcgen4j-config 
-    xmlns="http://www.fuin.org/srcgen4j/commons" 
+<sg4jc:srcgen4j-config 
+    xmlns:sg4jc="http://www.fuin.org/srcgen4j/commons" 
     xmlns:cfg="http://www.fuin.org/xmlcfg4j"
     xmlns:velo="http://www.fuin.org/srcgen4j/core/velocity">
 	
@@ -8,31 +8,31 @@
 		<cfg:variable name="templatesPath" value="${rootDir}/templates" />
 	</cfg:variables>
 	
-	<projects>
-		<project name="example" path="${rootDir}" maven="false">
-			<folder name="srcGenFolder" path="srcGen" create="true" override="true" clean="true" />
-		</project>
-	</projects>
+	<sg4jc:projects>
+		<sg4jc:project name="example" path="${rootDir}" maven="false">
+			<sg4jc:folder name="srcGenFolder" path="srcGen" create="true" override="true" clean="true" />
+		</sg4jc:project>
+	</sg4jc:projects>
 	
-	<parsers>
-		<parser name="parse1" class="org.fuin.srcgen4j.core.velocity.ParameterizedTemplateParser">
-			<config>
+	<sg4jc:parsers>
+		<sg4jc:parser name="parse1" class="org.fuin.srcgen4j.core.velocity.ParameterizedTemplateParser">
+			<sg4jc:config>
 				<velo:parameterized-template-parser modelPath="${templatesPath}" 
 				                                    modelFilter=".*\.ptg\.xml"
 				                                    templatePath="${templatesPath}" 
 				                                    templateFilter=".*\.ptg\.java" />
-			</config>
-		</parser>
-	</parsers>
+			</sg4jc:config>
+		</sg4jc:parser>
+	</sg4jc:parsers>
 	
-	<generators>
-		<generator name="gen1" class="org.fuin.srcgen4j.core.velocity.ParameterizedTemplateGenerator" 
+	<sg4jc:generators>
+		<sg4jc:generator name="gen1" class="org.fuin.srcgen4j.core.velocity.ParameterizedTemplateGenerator" 
 		           parser="parse1" project="example">
-		    <config>
+		    <sg4jc:config>
 				<velo:parameterized-template-generator templatePath="${templatesPath}" />
-			</config>
-			<artifact name="file" folder="srcGenFolder" />
-		</generator>
-	</generators>
+			</sg4jc:config>
+			<sg4jc:artifact name="file" folder="srcGenFolder" />
+		</sg4jc:generator>
+	</sg4jc:generators>
 	
-</srcgen4j-config>
+</sg4jc:srcgen4j-config>
