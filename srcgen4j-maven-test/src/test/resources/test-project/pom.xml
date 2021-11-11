@@ -27,7 +27,7 @@
                         <id>srcgen4j</id>
                         <phase>process-sources</phase>
                         <goals>
-                            <goal>process-mixins</goal>
+                            <goal>process-template</goal>
                         </goals>
                     </execution>
                 </executions>
