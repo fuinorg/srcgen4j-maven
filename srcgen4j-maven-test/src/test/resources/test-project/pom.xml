@@ -16,11 +16,11 @@
                 <artifactId>srcgen4j-maven-plugin</artifactId>
                 <version>0.4.3-SNAPSHOT</version>
                 <configuration>
-					<jaxbClassesToBeBound>
-					  <param>org.fuin.srcgen4j.core.velocity.VelocityGeneratorConfig</param>
-					  <param>org.fuin.srcgen4j.core.velocity.ParameterizedTemplateParserConfig</param>
-					  <param>org.fuin.srcgen4j.core.velocity.ParameterizedTemplateGeneratorConfig</param>
-					</jaxbClassesToBeBound>
+                    <jaxbClassesToBeBound>
+                        <param>org.fuin.srcgen4j.core.velocity.VelocityGeneratorConfig</param>
+                        <param>org.fuin.srcgen4j.core.velocity.ParameterizedTemplateParserConfig</param>
+                        <param>org.fuin.srcgen4j.core.velocity.ParameterizedTemplateGeneratorConfig</param>
+                    </jaxbClassesToBeBound>
                 </configuration>
                 <executions>
                     <execution>
@@ -32,16 +32,16 @@
                     </execution>
                 </executions>
                 <dependencies>
-			        <dependency>
-						<groupId>org.apache.velocity</groupId>
-						<artifactId>velocity-engine-core</artifactId>
-						<version>2.3</version>
-			        </dependency>
-					<dependency>
-						<groupId>com.sun.xml.bind</groupId>
-						<artifactId>jaxb-impl</artifactId>
-						<version>2.3.5</version>
-					</dependency>
+                    <dependency>
+                        <groupId>org.apache.velocity</groupId>
+                        <artifactId>velocity-engine-core</artifactId>
+                        <version>2.3</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.sun.xml.bind</groupId>
+                        <artifactId>jaxb-impl</artifactId>
+                        <version>2.3.5</version>
+                    </dependency>
                 </dependencies>
             </plugin>
 
