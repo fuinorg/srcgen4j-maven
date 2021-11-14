@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sg4jc:srcgen4j-config 
-    xmlns:sg4jc="http://www.fuin.org/srcgen4j/commons" 
-    xmlns:cfg="http://www.fuin.org/xmlcfg4j"
-    xmlns:velo="http://www.fuin.org/srcgen4j/core/velocity">
+    xmlns:sg4jc="http://www.fuin.org/srcgen4j/commons/0.4.3" 
+    xmlns:cfg="http://www.fuin.org/xmlcfg4j/0.2.1"
+    xmlns:velo="http://www.fuin.org/srcgen4j/core/velocity/0.4.3">
 	
 	<cfg:variables>
 		<cfg:variable name="templatesPath" value="${rootDir}/templates" />

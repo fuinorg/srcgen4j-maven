@@ -38,13 +38,13 @@ import javax.xml.xpath.XPathFactory;
 
 import org.fuin.srcgen4j.commons.DefaultContext;
 import org.fuin.srcgen4j.commons.GenerateException;
-import org.fuin.srcgen4j.commons.JaxbHelper;
 import org.fuin.srcgen4j.commons.ParseException;
 import org.fuin.srcgen4j.commons.SrcGen4J;
 import org.fuin.srcgen4j.commons.SrcGen4JConfig;
 import org.fuin.srcgen4j.commons.SrcGen4JContext;
-import org.fuin.srcgen4j.commons.UnmarshalObjectException;
 import org.fuin.utils4j.Utils4J;
+import org.fuin.utils4j.jaxb.JaxbUtils;
+import org.fuin.utils4j.jaxb.UnmarshallerBuilder;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -114,24 +114,25 @@ public final class SrcGen4JMavenApp {
     public static SrcGen4JConfig createAndInit(final SrcGen4JContext context, final File configFile,
             final List<String> jaxbClassesToBeBound) {
         try {
-            final JaxbHelper helper = new JaxbHelper();
             final Class<?>[] classes = getJaxbContextClasses(context.getClassLoader(), jaxbClassesToBeBound);
-            final SrcGen4JConfig config = helper.create(configFile, JAXBContext.newInstance(classes));
+            final SrcGen4JConfig config = JaxbUtils
+                    .unmarshal(new UnmarshallerBuilder().withContext(JAXBContext.newInstance(classes)).build(), configFile);
             config.init(context, Utils4J.getCanonicalFile(configFile.getParentFile()));
             return config;
         } catch (final JAXBException ex) {
             throw new RuntimeException("Error creating the JAXB context", ex);
-        } catch (final UnmarshalObjectException ex) {
-            throw new RuntimeException("Error reading the configuration: " + configFile, ex);
         }
     }
 
     /**
-     * Uses XPath to extract a list of strings from a set of nodes. 
+     * Uses XPath to extract a list of strings from a set of nodes.
      * 
-     * @param xPath XPath instance to use.
-     * @param xpathExpression Expression to use for locating the strings to extract.
-     * @param doc Document to locate the nodes within.
+     * @param xPath
+     *            XPath instance to use.
+     * @param xpathExpression
+     *            Expression to use for locating the strings to extract.
+     * @param doc
+     *            Document to locate the nodes within.
      * 
      * @return List of strings extracted from the document.
      */
@@ -154,10 +155,14 @@ public final class SrcGen4JMavenApp {
     /**
      * Returns the configuration file from the POM or a default based on the pom directory.
      * 
-     * @param xPath XPath instance to use.
-     * @param xpathExpression Expression to use for locating the strings to extract.
-     * @param doc Document to locate the nodes within.
-     * @param dir Directory where the 'pom.xml' is located.
+     * @param xPath
+     *            XPath instance to use.
+     * @param xpathExpression
+     *            Expression to use for locating the strings to extract.
+     * @param doc
+     *            Document to locate the nodes within.
+     * @param dir
+     *            Directory where the 'pom.xml' is located.
      * 
      * @return XML configuration file.
      */
@@ -165,31 +170,31 @@ public final class SrcGen4JMavenApp {
         final List<String> names = findStrings(xPath, "//configuration/configFile", doc);
         if (names.size() == 0) {
             return new File(dir, "srcgen4j-config.xml");
-        }        
+        }
         return new File(names.get(0));
     }
 
-    
     /**
      * Main application.
      * 
-     * @param args Only argument is the directory where the Maven pom.xml is located. 
+     * @param args
+     *            Only argument is the directory where the Maven pom.xml is located.
      */
     public static void main(final String[] args) {
-        
+
         if (args == null || args.length == 0) {
             System.err.println("Please provide the directory where the Maven pom.xml is located as only command line argument");
             System.exit(1);
         }
         final File dir = new File(args[0]);
-        
-        /// Read POM and create a configuration  using the configuration
+
+        /// Read POM and create a configuration using the configuration
         final File pomFile = new File(dir, "pom.xml");
         final Document pomDoc = parseMavenPom(pomFile);
         final XPath xPath = XPathFactory.newInstance().newXPath();
-        final File configFile = extractConfigFile(xPath, pomDoc, dir); 
+        final File configFile = extractConfigFile(xPath, pomDoc, dir);
         final List<String> jaxbClassesToBeBound = findStrings(xPath, "//configuration/jaxbClassesToBeBound/param/text()", pomDoc);
-        
+
         // Generate based on the configuration
         final DefaultContext context = new DefaultContext(SrcGen4JMavenApp.class.getClassLoader(), Collections.emptyList());
         final SrcGen4JConfig config = createAndInit(context, configFile, jaxbClassesToBeBound);

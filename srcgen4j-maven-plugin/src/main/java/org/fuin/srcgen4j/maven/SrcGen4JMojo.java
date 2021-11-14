@@ -32,13 +32,13 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.project.MavenProject;
 import org.fuin.srcgen4j.commons.DefaultContext;
 import org.fuin.srcgen4j.commons.GenerateException;
-import org.fuin.srcgen4j.commons.JaxbHelper;
 import org.fuin.srcgen4j.commons.ParseException;
 import org.fuin.srcgen4j.commons.SrcGen4J;
 import org.fuin.srcgen4j.commons.SrcGen4JConfig;
 import org.fuin.srcgen4j.commons.SrcGen4JContext;
-import org.fuin.srcgen4j.commons.UnmarshalObjectException;
 import org.fuin.utils4j.Utils4J;
+import org.fuin.utils4j.jaxb.JaxbUtils;
+import org.fuin.utils4j.jaxb.UnmarshallerBuilder;
 import org.slf4j.impl.StaticLoggerBinder;
 
 /**
@@ -78,8 +78,7 @@ public final class SrcGen4JMojo extends AbstractMojo {
     private String[] jaxbClassesToBeBound;
 
     /**
-     * Checks if a variable is not <code>null</code> and throws an
-     * <code>IllegalNullArgumentException</code> if this rule is violated.
+     * Checks if a variable is not <code>null</code> and throws an <code>IllegalNullArgumentException</code> if this rule is violated.
      * 
      * @param name
      *            Name of the variable to be displayed in an error message.
@@ -110,8 +109,7 @@ public final class SrcGen4JMojo extends AbstractMojo {
         }
     }
 
-    private Class<?>[] getJaxbContextClasses(final ClassLoader classLoader)
-            throws MojoExecutionException {
+    private Class<?>[] getJaxbContextClasses(final ClassLoader classLoader) throws MojoExecutionException {
         final Set<Class<?>> classes = new HashSet<Class<?>>();
         classes.add(SrcGen4JConfig.class);
         if ((jaxbClassesToBeBound != null) && (jaxbClassesToBeBound.length > 0)) {
@@ -120,8 +118,7 @@ public final class SrcGen4JMojo extends AbstractMojo {
                     final Class<?> clasz = classLoader.loadClass(name);
                     classes.add(clasz);
                 } catch (final ClassNotFoundException ex) {
-                    throw new MojoExecutionException("Class to add to JAXB context not found: "
-                            + name, ex);
+                    throw new MojoExecutionException("Class to add to JAXB context not found: " + name, ex);
                 }
             }
         }
@@ -129,8 +126,7 @@ public final class SrcGen4JMojo extends AbstractMojo {
     }
 
     /**
-     * Creates and initializes a SrcGen4J configuration from a configuration
-     * file and adds the necessary configurations.
+     * Creates and initializes a SrcGen4J configuration from a configuration file and adds the necessary configurations.
      * 
      * @param context
      *            Current context - Cannot be NULL.
@@ -142,19 +138,15 @@ public final class SrcGen4JMojo extends AbstractMojo {
      * @throws MojoExecutionException
      *             Error reading the configuration.
      */
-    public SrcGen4JConfig createAndInit(final SrcGen4JContext context, final File configFile)
-            throws MojoExecutionException {
+    public SrcGen4JConfig createAndInit(final SrcGen4JContext context, final File configFile) throws MojoExecutionException {
         try {
-            final JaxbHelper helper = new JaxbHelper();
             final Class<?>[] classes = getJaxbContextClasses(context.getClassLoader());
-            final SrcGen4JConfig config = helper.create(configFile,
-                    JAXBContext.newInstance(classes));
+            final SrcGen4JConfig config = JaxbUtils
+                    .unmarshal(new UnmarshallerBuilder().withContext(JAXBContext.newInstance(classes)).build(), configFile);
             config.init(context, Utils4J.getCanonicalFile(configFile.getParentFile()));
             return config;
         } catch (final JAXBException ex) {
             throw new MojoExecutionException("Error creating the JAXB context", ex);
-        } catch (final UnmarshalObjectException ex) {
-            throw new MojoExecutionException("Error reading the configuration: " + configFile, ex);
         }
     }
 
@@ -175,8 +167,7 @@ public final class SrcGen4JMojo extends AbstractMojo {
 
         checkConfigFile();
 
-        final DefaultContext context = new DefaultContext(this.getClass().getClassLoader(),
-                createCp());
+        final DefaultContext context = new DefaultContext(this.getClass().getClassLoader(), createCp());
         final SrcGen4JConfig config = createAndInit(context, configFile);
         final SrcGen4J srcGen4J = new SrcGen4J(config, context);
         try {
