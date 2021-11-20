@@ -11,7 +11,6 @@ Source code generation for Java (Maven Plugin)
 - 0.4.3 (or later) = **Java 11** before namespace change from 'javax' to 'jakarta'
 - 0.4.2 (or previous) = **Java 8**
 
-
 ## What is this?
 The project provides a Maven plugin that executes a parse/generate workflow based on the [srcgen4j-common](https://github.com/fuinorg/srcgen4j-common/)/[srcgen4j-core](https://github.com/fuinorg/srcgen4j-core/) projects. 
 
@@ -22,29 +21,38 @@ Simply add the plugin to your project's Maven POM and add configuration an depen
 <plugin>
     <groupId>org.fuin.srcgen4j</groupId>
     <artifactId>srcgen4j-maven-plugin</artifactId>
-    <version>0.4.2</version>
+    <version>0.4.3-SNAPSHOT</version>
     <configuration>
-        <!-- Default XML config file name can be changed by adding the following:
-        <configFile>srcgen4j-config.xml<configFile>
-        -->
         <jaxbClassesToBeBound>
-          <!-- JAX enabled configuration classes used in "srcgen4j-config.xml" -->
-          <param>org.fuin.srcgen4j.core.velocity.VelocityGeneratorConfig</param>
-          <param>org.fuin.srcgen4j.core.velocity.ParameterizedTemplateParserConfig</param>
-          <param>org.fuin.srcgen4j.core.velocity.ParameterizedTemplateGeneratorConfig</param>
+            <param>org.fuin.srcgen4j.core.velocity.VelocityGeneratorConfig</param>
+            <param>org.fuin.srcgen4j.core.velocity.ParameterizedTemplateParserConfig</param>
+            <param>org.fuin.srcgen4j.core.velocity.ParameterizedTemplateGeneratorConfig</param>
         </jaxbClassesToBeBound>
     </configuration>
+    <executions>
+        <execution>
+            <id>srcgen4j</id>
+            <phase>process-sources</phase>
+            <goals>
+                <goal>process-template</goal>
+            </goals>
+        </execution>
+    </executions>
     <dependencies>
-        <!-- Libraries used for parsing or code generation that are 
-             referenced in "srcgen4j-config.xml"-->    
         <dependency>
             <groupId>org.apache.velocity</groupId>
-            <artifactId>velocity</artifactId>
-            <version>1.7</version>
+            <artifactId>velocity-engine-core</artifactId>
+            <version>2.3</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-impl</artifactId>
+            <version>2.3.5</version>
         </dependency>
     </dependencies>
 </plugin>
 ```
+:warning: If you use a snapshot version, be sure to include the snapshot repositoy to your settings (See below).
 
 ## Example
 You can also find an example project here: [test-project](https://github.com/fuinorg/srcgen4j-maven/tree/master/srcgen4j-maven-test/src/test/resources/test-project).
