@@ -1,7 +1,7 @@
 # srcgen4j-maven
 Source code generation for Java (Maven Plugin)
 
-[![Build Status](https://jenkins.fuin.org/job/srcgen4j-maven/badge/icon)](https://jenkins.fuin.org/job/srcgen4j-maven/)
+[![Build Status](https://github.com/fuinorg/srcgen4j-maven/actions/workflows/maven.yml/badge.svg)](https://github.com/fuinorg/srcgen4j-maven/actions/workflows/maven.yml)
 [![Coverage Status](https://sonarcloud.io/api/project_badges/measure?project=org.fuin.srcgen4j%3Asrcgen4j-maven-parent&metric=coverage)](https://sonarcloud.io/dashboard?id=org.fuin.srcgen4j%3Asrcgen4j-maven-parent)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.fuin.srcgen4j/srcgen4j-maven-parent/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.fuin.srcgen4j/srcgen4j-maven-parent/)
 [![LGPLv3 License](http://img.shields.io/badge/license-LGPLv3-blue.svg)](https://www.gnu.org/licenses/lgpl.html)
