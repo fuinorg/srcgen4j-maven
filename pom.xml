@@ -7,13 +7,13 @@
 	<parent>
 		<groupId>org.fuin</groupId>
 		<artifactId>pom</artifactId>
-		<version>1.8.0-SNAPSHOT</version>
+		<version>2.0.0</version>
 	</parent>
 
 	<groupId>org.fuin.srcgen4j</groupId>
-	<artifactId>srcgen4j-maven-parent</artifactId>
-	<version>0.4.3-SNAPSHOT</version>
-	<packaging>pom</packaging>
+	<artifactId>srcgen4j-maven-plugin</artifactId>
+	<version>0.5.0-SNAPSHOT</version>
+	<packaging>maven-plugin</packaging>
 	<description>Source code generation for Java (Maven Plugin)</description>
 
 	<scm>
@@ -27,23 +27,228 @@
 		<url>https://github.com/fuinorg/srcgen4j-maven/issues</url>
 	</issueManagement>
 
-	<modules>
-		<module>srcgen4j-maven-plugin</module>
-		<module>srcgen4j-maven-test</module>
-        <module>srcgen4j-maven-app</module>
-	</modules>
+	<properties>
+		<java.version>21</java.version>
+		<maven.compiler.release>${java.version}</maven.compiler.release>
+		<maven.compiler.source>${java.version}</maven.compiler.source>
+		<maven.compiler.target>${java.version}</maven.compiler.target>
+
+		<assertj-core.version>3.26.3</assertj-core.version>
+		<itf.version>0.13.1</itf.version>
+		<jaxb-runtime.version>4.0.5</jaxb-runtime.version>
+		<jcabi-maven-slf4j.version>0.10</jcabi-maven-slf4j.version>
+		<junit-jupiter.version>5.12.2</junit-jupiter.version>
+		<maven-failsafe-plugin.version>3.5.3</maven-failsafe-plugin.version>
+		<maven-plugin-annotations.version>3.15.1</maven-plugin-annotations.version>
+		<maven-plugin-plugin.version>3.15.1</maven-plugin-plugin.version>
+		<mavenVersion>3.3.9</mavenVersion>
+		<slf4j-api.version>2.0.6</slf4j-api.version>
+		<srcgen4j-core.version>0.5.0-SNAPSHOT</srcgen4j-core.version>
+		<utils4j.version>0.15.1-SNAPSHOT</utils4j.version>
+		<velocity-engine-core.version>2.4.1</velocity-engine-core.version>
+	</properties>
+
+	<dependencies>
+
+		<!-- compile -->
+
+		<dependency>
+			<groupId>org.apache.maven</groupId>
+			<artifactId>maven-plugin-api</artifactId>
+			<version>${mavenVersion}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.maven.plugin-tools</groupId>
+			<artifactId>maven-plugin-annotations</artifactId>
+			<version>${maven-plugin-annotations.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.maven</groupId>
+			<artifactId>maven-core</artifactId>
+			<version>${mavenVersion}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.fuin.srcgen4j</groupId>
+			<artifactId>srcgen4j-core</artifactId>
+			<version>${srcgen4j-core.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.glassfish.jaxb</groupId>
+			<artifactId>jaxb-runtime</artifactId>
+			<version>${jaxb-runtime.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.fuin</groupId>
+			<artifactId>utils4j</artifactId>
+			<version>${utils4j.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j-api.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.jcabi</groupId>
+			<artifactId>jcabi-maven-slf4j</artifactId>
+			<version>${jcabi-maven-slf4j.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity-engine-core</artifactId>
+			<version>${velocity-engine-core.version}</version>
+		</dependency>
+
+		<!-- Test -->
+
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<version>${junit-jupiter.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<version>${assertj-core.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.soebes.itf.jupiter.extension</groupId>
+			<artifactId>itf-jupiter-extension</artifactId>
+			<version>${itf.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.soebes.itf.jupiter.extension</groupId>
+			<artifactId>itf-assertj</artifactId>
+			<version>${itf.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
 
 	<build>
 
 		<plugins>
-		
+
 			<plugin>
-				<groupId>org.jacoco</groupId>
-				<artifactId>jacoco-maven-plugin</artifactId>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<configuration>
+					<doclint>none</doclint>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-plugin-plugin</artifactId>
+				<version>${maven-plugin-plugin.version}</version>
+				<executions>
+					<execution>
+						<id>default-descriptor</id>
+						<phase>process-classes</phase>
+					</execution>
+					<execution>
+						<id>help-goal</id>
+						<goals>
+							<goal>helpmojo</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>com.soebes.itf.jupiter.extension</groupId>
+				<artifactId>itf-maven-plugin</artifactId>
+				<version>${itf.version}</version>
+				<executions>
+					<execution>
+						<id>installing</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>install</goal>
+							<goal>resources-its</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>${maven-failsafe-plugin.version}</version>
+				<configuration>
+					<systemPropertyVariables>
+						<maven.version>${maven.version}</maven.version>
+						<maven.home>${maven.home}</maven.home>
+					</systemPropertyVariables>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 
 		</plugins>
 
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings
+					only. It has no influence on the Maven build itself. -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.apache.maven.plugins</groupId>
+										<artifactId>maven-plugin-plugin</artifactId>
+										<versionRange>[2.9,)</versionRange>
+										<goals>
+											<goal>descriptor</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<execute />
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
 
 </project>

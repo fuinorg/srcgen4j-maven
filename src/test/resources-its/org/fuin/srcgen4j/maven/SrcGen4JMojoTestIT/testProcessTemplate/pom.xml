@@ -1,0 +1,40 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.fuin.srcgen4j</groupId>
+    <artifactId>srcgen4j-test-project</artifactId>
+    <name>SrcGen4J Maven Plugin Test Example</name>
+    <version>0.0.1</version>
+
+    <build>
+
+        <plugins>
+
+            <plugin>
+                <groupId>org.fuin.srcgen4j</groupId>
+                <artifactId>srcgen4j-maven-plugin</artifactId>
+                <version>@project.version@</version>
+                <configuration>
+                    <jaxbClasses>
+                        <jaxbClass>org.fuin.srcgen4j.core.velocity.VelocityGeneratorConfig</jaxbClass>
+                        <jaxbClass>org.fuin.srcgen4j.core.velocity.ParameterizedTemplateParserConfig</jaxbClass>
+                        <jaxbClass>org.fuin.srcgen4j.core.velocity.ParameterizedTemplateGeneratorConfig</jaxbClass>
+                    </jaxbClasses>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>srcgen4j</id>
+                        <phase>process-sources</phase>
+                        <goals>
+                            <goal>process-template</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+
+    </build>
+
+</project>
