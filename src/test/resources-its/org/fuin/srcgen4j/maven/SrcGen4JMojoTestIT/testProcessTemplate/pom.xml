@@ -7,6 +7,36 @@
     <name>SrcGen4J Maven Plugin Test Example</name>
     <version>0.0.1</version>
 
+    <repositories>
+        <repository>
+            <id>central.sonatype.snapshots</id>
+            <name>Central Sonatype Snapshot Repository</name>
+            <url>https://central.sonatype.com/repository/maven-snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <updatePolicy>always</updatePolicy>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>central.sonatype.snapshots</id>
+            <name>Central Sonatype Snapshot Repository</name>
+            <url>https://central.sonatype.com/repository/maven-snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <updatePolicy>always</updatePolicy>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
     <build>
 
         <plugins>
