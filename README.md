@@ -1,11 +1,11 @@
 # srcgen4j-maven
 Source code generation for Java (Maven Plugin)
 
-[![Build Status](https://github.com/fuinorg/srcgen4j-maven/actions/workflows/maven.yml/badge.svg)](https://github.com/fuinorg/srcgen4j-maven/actions/workflows/maven.yml)
+[![Java Maven Build](https://github.com/fuinorg/srcgen4j-maven/actions/workflows/maven.yml/badge.svg)](https://github.com/fuinorg/srcgen4j-maven/actions/workflows/maven.yml)
 [![Coverage Status](https://sonarcloud.io/api/project_badges/measure?project=org.fuin.srcgen4j%3Asrcgen4j-maven-plugin&metric=coverage)](https://sonarcloud.io/dashboard?id=org.fuin.srcgen4j%3Asrcgen4j-maven-plugin)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.fuin.srcgen4j/srcgen4j-maven-plugin/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.fuin.srcgen4j/srcgen4j-maven-plugin/)
+[![Maven Central](https://img.shields.io/maven-central/v/org.fuin.srcgen4j/srcgen4j-maven-plugin.svg)](https://central.sonatype.com/artifact/org.fuin.srcgen4j/srcgen4j-maven-plugin)
 [![LGPLv3 License](http://img.shields.io/badge/license-LGPLv3-blue.svg)](https://www.gnu.org/licenses/lgpl.html)
-[![Java Development Kit 21](https://img.shields.io/badge/JDK-21-green.svg)](https://openjdk.java.net/projects/jdk/21/)
+[![Java Development Kit 17](https://img.shields.io/badge/JDK-17-green.svg)](https://openjdk.java.net/projects/jdk/17/)
 
 ## Versions
 See [Change Log](CHANGELOG.md) for version history.
